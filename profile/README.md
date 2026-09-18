@@ -38,6 +38,10 @@ A core rule across this work is: **map the organizational function first; classi
 
 The current public repository is the ARCTIC-0 archive and tooling release: task archive, schemas, taxonomy, authoring tools, and analysis. Evaluator/runtime/leaderboard components are separate roadmap work and are not presented as released infrastructure.
 
+## Community
+
+Use **[OpenSiro Discussions](https://github.com/orgs/opensiro/discussions)** for cross-repository questions, ideas, and early-stage proposals. Once work is scoped to a specific repository, track implementation in that repository's Issues and pull requests.
+
 ## Start here
 
 | Goal | Repository |
