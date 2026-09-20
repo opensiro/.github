@@ -4,6 +4,12 @@ Open research and infrastructure for organizing, evaluating, and evolving autono
 
 OpenSiro studies AI agent harnesses as organizations: how operational work, coordination, regulation, independent audit, adaptation, policy, escalation, and authority are actually implemented — independently of the vocabulary a project uses. A separate research track, ARCTIC, studies whether frontier systems can transfer capabilities into compact models under sample-blind evaluation.
 
+## New here?
+
+Start with **[opensiro.com](https://opensiro.com)** for the plain-language and visual orientation layer. The site explains why this work exists and includes the **[VSMLite / VSM poster](https://opensiro.com/vsm.html)** for the normalization problem, organizational functions, and control relationships.
+
+The website is a presentation layer, not a normative source of truth. Canonical VSM semantics, assessment procedure, evidence-backed assessments, and contributor authority remain in the repositories that own them.
+
 ## VSM Harness ecosystem
 
 The VSM Harness repositories form an evidence-backed stack for describing and comparing agent harness organization:
@@ -44,13 +50,14 @@ Use **[OpenSiro Discussions](https://github.com/orgs/opensiro/discussions)** for
 
 ## Start here
 
-| Goal | Repository |
+| Goal | Destination |
 | --- | --- |
-| Understand the VSM semantics | [vsm-harness-profile](https://github.com/opensiro/vsm-harness-profile) |
+| Understand the idea in plain language and visually | [opensiro.com](https://opensiro.com) · [VSMLite / VSM poster](https://opensiro.com/vsm.html) |
+| Contribute to the bounded VSM Harness OSS system | [Contributor Start](https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md) |
+| Understand the canonical VSM semantics | [vsm-harness-profile](https://github.com/opensiro/vsm-harness-profile) |
 | Inspect assessed agent harnesses | [vsm-harness-index](https://github.com/opensiro/vsm-harness-index) |
 | Apply the assessment procedure | [vsm-harness-skills](https://github.com/opensiro/vsm-harness-skills) |
 | Study the OSS organization experiment | [vsm-oss-organization](https://github.com/opensiro/vsm-oss-organization) |
 | Explore capability-transfer research | [arctic-0](https://github.com/opensiro/arctic-0) |
-| Visit the public site | [opensiro.com](https://opensiro.com) |
 
-OpenSiro repositories keep normative definitions, evidence-backed assessments, executable experiments, and presentation layers separate so that each claim can be traced to its actual source of truth.
+OpenSiro repositories keep normative definitions, evidence-backed assessments, executable experiments, organizational authority, and presentation layers separate so that each claim can be traced to its actual source of truth.
