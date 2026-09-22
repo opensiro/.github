@@ -1,10 +1,8 @@
 <p align="center">
   <a href="https://opensiro.com">
-    <img src="https://avatars.githubusercontent.com/u/262875463?s=200&v=4" width="120" alt="OpenSiro logo">
+    <img src="https://raw.githubusercontent.com/opensiro/opensiro.com/main/assets/logo/opensiro-thin.svg" width="339" alt="OpenSiro">
   </a>
 </p>
-
-<h1 align="center">OpenSiro</h1>
 
 <p align="center">
   <strong>Open research and infrastructure for organizing, evaluating, and evolving autonomous AI systems.</strong>
