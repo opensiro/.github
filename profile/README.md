@@ -14,6 +14,8 @@
 
 <p align="center">
   <a href="https://opensiro.com"><img alt="Website" src="https://img.shields.io/badge/Website-opensiro.com-111827?style=for-the-badge"></a>
+  <a href="mailto:founders@opensiro.com"><img alt="Email founders@opensiro.com" src="https://img.shields.io/badge/Email-founders%40opensiro.com-0f766e?style=for-the-badge"></a>
+  <a href="https://github.com/xLagerFeuer"><img alt="Maintainer @xLagerFeuer" src="https://img.shields.io/badge/Maintainer-%40xLagerFeuer-181717?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/opensiro/vsm-harness-index"><img alt="VSM Harness Index" src="https://img.shields.io/badge/VSM-Harness_Index-2563eb?style=for-the-badge"></a>
   <a href="https://github.com/orgs/opensiro/discussions"><img alt="Discussions" src="https://img.shields.io/badge/Community-Discussions-7c3aed?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md"><img alt="Contribute" src="https://img.shields.io/badge/Start-Contributing-059669?style=for-the-badge"></a>
