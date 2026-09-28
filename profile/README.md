@@ -43,7 +43,7 @@ OpenSiro builds public research infrastructure for making those structures expli
 
 | Track | What it studies | Start here |
 | --- | --- | --- |
-| **VSM Harness** | The organization of agent harnesses through implementation-independent VSM functions and evidence-backed repository assessments. | [VSM Harness Index](https://github.com/opensiro/vsm-harness-index) |
+| **VSM Harness** | The organization of agent harnesses through implementation-independent VSM functions, evidence-backed repository assessments, and experimental general functional-capability research. | [VSM Harness Index](https://github.com/opensiro/vsm-harness-index) |
 | **ARCTIC** | Whether frontier systems can transfer capabilities into compact student models under sample-blind evaluation. | [ARCTIC-0](https://github.com/opensiro/arctic-0) |
 
 These tracks are separate. VSM semantics come from the VSM Harness Profile; ARCTIC has its own research artifacts and roadmap.
@@ -58,9 +58,16 @@ VSM Harness Profile
 assessment procedure / skills
         ↓
 VSM Harness Index
-        ↓
-curated downstream views
+   canonical closure / ownership corpus
+        │
+        ├──→ Awesome VSM Harness
+        │    curated representative view
+        │
+        └──→ VSM Harness Capability   [experimental]
+             general per-function capability evidence
 ```
+
+Capability is an experimental adjacent research repository. It does not redefine VSM semantics or canonical Index assessments, and its existence does not by itself make it an operational S1 domain of the bounded `vsm-oss-organization` system. Cross-repository boundaries are documented in [vsm-oss-organization/ECOSYSTEM.md](https://github.com/opensiro/vsm-oss-organization/blob/main/ECOSYSTEM.md).
 
 A core rule across this work is:
 
@@ -75,6 +82,7 @@ Names such as *manager*, *verifier*, *planner*, *delegation*, or *learning* are 
 | **[vsm-harness-profile](https://github.com/opensiro/vsm-harness-profile)** | Authoritative, implementation-independent VSM semantics for the ecosystem. |
 | **[vsm-harness-skills](https://github.com/opensiro/vsm-harness-skills)** | Reusable assessment procedures and tooling that apply the Profile without redefining it. |
 | **[vsm-harness-index](https://github.com/opensiro/vsm-harness-index)** | Evidence-backed corpus of repository-relative harness assessments and deterministic derived views. |
+| **[vsm-harness-capability](https://github.com/opensiro/vsm-harness-capability)** | **Experimental:** evidence-backed general functional-capability research, compared one VSM function at a time and kept separate from domain-specific assessment. |
 | **[awesome-vsm-harness](https://github.com/opensiro/awesome-vsm-harness)** | Curated representative organizational forms selected from the broader corpus. |
 | **[vsm-oss-organization](https://github.com/opensiro/vsm-oss-organization)** | Experimental organizational/control construction for the bounded OpenSiro VSM Harness OSS group. |
 | **[terminal-bench-vsm](https://github.com/opensiro/terminal-bench-vsm)** | Executable research on failure-aware coding harnesses and their evaluation/growth environment. |
@@ -90,16 +98,20 @@ Then choose the artifact closest to your goal:
 - **Inspect real harness assessments:** [VSM Harness Index](https://github.com/opensiro/vsm-harness-index)
 - **Understand the canonical semantics:** [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile)
 - **Run the assessment procedure:** [VSM Harness Skills](https://github.com/opensiro/vsm-harness-skills)
+- **Explore experimental general functional capability:** [VSM Harness Capability](https://github.com/opensiro/vsm-harness-capability)
+- **Understand cross-repository boundaries:** [VSM OSS Ecosystem Architecture](https://github.com/opensiro/vsm-oss-organization/blob/main/ECOSYSTEM.md)
 - **Contribute to the bounded OSS organization:** [Contributor Start](https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md)
 - **Explore capability-transfer research:** [ARCTIC-0](https://github.com/opensiro/arctic-0)
 
 ## Source-of-truth boundaries
 
-The website and this organization profile are presentation layers. Canonical claims stay with the repositories that own them:
+The website and this organization profile are presentation layers. Claims stay with the repositories that own them:
 
 - **Profile** → VSM semantics
-- **Skills** → assessment procedure
-- **Index** → assessments, rankings, corpus metrics, and provenance
+- **Skills** → canonical assessment procedure
+- **Index** → canonical repository-relative assessments, rankings, corpus metrics, and provenance
+- **Capability** → experimental general functional-capability evidence and derived comparisons
+- **VSM OSS Organization** → cross-repository organization/boundary documentation for its declared scope
 - **ARCTIC-0** → released ARCTIC artifacts
 
 This separation keeps definitions, evidence, derived views, experiments, and presentation synchronized without turning the organization profile into another database.
