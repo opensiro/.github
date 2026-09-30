@@ -75,12 +75,12 @@ export function buildSvg(data) {
   const trackTicks = (cx) => [
     ...minorTicks.map(({ value, factor }) => {
       const y = logY(value);
-      const half = factor === 5 ? 18 : 16;
+      const half = factor === 5 ? 7 : 5;
       return `<line x1="${(cx - half).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + half).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick minor factor-${factor}" />`;
     }),
     ...majorTicks.map((value) => {
       const y = logY(value);
-      return `<line x1="${(cx - 20).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + 20).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick major" />`;
+      return `<line x1="${(cx - 9).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + 9).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick major" />`;
     }),
   ].join('');
 
@@ -129,8 +129,8 @@ export function buildSvg(data) {
     return `
       <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope === 'adjacent' ? '; adjacent research repository' : ''}">
         <line x1="${cx.toFixed(1)}" y1="${plotTop}" x2="${cx.toFixed(1)}" y2="${baseline}" class="track" />
-        ${trackTicks(cx)}
         ${bars}
+        ${trackTicks(cx)}
         <text x="${cx.toFixed(1)}" y="178" text-anchor="middle" class="repo-label">${esc(row.label)}</text>
         ${scopeLabel}
       </g>`;
@@ -156,7 +156,7 @@ export function buildSvg(data) {
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
     .track { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 2 4; }
-    .track-tick { stroke: #9aa4b2; stroke-linecap: round; shape-rendering: crispEdges; }
+    .track-tick { stroke: #9aa4b2; stroke-linecap: round; shape-rendering: crispEdges; pointer-events: none; }
     .track-tick.major { stroke-width: 1.1; opacity: 0.95; }
     .track-tick.minor { stroke-width: 1; opacity: 0.72; }
     .track-tick.factor-2 { opacity: 0.55; }
