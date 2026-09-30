@@ -31,6 +31,12 @@
 
 <p align="center"><sub>Corpus metrics are rendered live from the Index's generated <code>data/metrics.json</code>; this profile does not maintain a second copy of the numbers.</sub></p>
 
+<p align="center">
+  <a href="https://github.com/opensiro/vsm-oss-organization">
+    <img src="https://raw.githubusercontent.com/opensiro/.github/main/assets/repo-activity.svg" width="900" alt="OpenSiro VSM OSS repository activity over the last 10 completed days">
+  </a>
+</p>
+
 ---
 
 ## What OpenSiro does
