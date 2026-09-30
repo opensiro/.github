@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img">
+<rect x="0.5" y="0.5" width="899" height="199" rx="14" fill="#fff" stroke="#d0d7de"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,Liberation Mono,monospace" fill="#18181b">
+<text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
+<text x="870" y="34" text-anchor="end" font-size="9" fill="#6e7781" letter-spacing=".7">LAYOUT PREVIEW · SAMPLE DATA</text>
+<circle cx="30" cy="52" r="4" fill="#2f81f7"/>
+<text x="40" y="55" font-size="9" fill="#6e7781">commits</text>
+<circle cx="100" cy="52" r="4" fill="#2da44e"/>
+<text x="110" y="55" font-size="9" fill="#6e7781">PRs</text>
+<circle cx="150" cy="52" r="4" fill="#bf8700"/>
+<text x="160" y="55" font-size="9" fill="#6e7781">issues</text>
+<line x1="74" y1="158.0" x2="870" y2="158.0" stroke="#d8dee4" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="64" y="161.0" text-anchor="end" font-size="8" fill="#6e7781">0</text>
+<line x1="74" y1="134.0" x2="870" y2="134.0" stroke="#d8dee4" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="64" y="137.0" text-anchor="end" font-size="8" fill="#6e7781">50</text>
+<line x1="74" y1="110.0" x2="870" y2="110.0" stroke="#d8dee4" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="64" y="113.0" text-anchor="end" font-size="8" fill="#6e7781">100</text>
+<line x1="74" y1="86.0" x2="870" y2="86.0" stroke="#d8dee4" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="64" y="89.0" text-anchor="end" font-size="8" fill="#6e7781">150</text>
+<line x1="74" y1="62.0" x2="870" y2="62.0" stroke="#d8dee4" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="64" y="65.0" text-anchor="end" font-size="8" fill="#6e7781">200</text>
+<line x1="74" y1="62" x2="74" y2="158" stroke="#57606a" stroke-width="1"/>
+<line x1="74" y1="158" x2="870" y2="158" stroke="#57606a" stroke-width="1"/>
+<line x1="153.6" y1="62" x2="153.6" y2="158" stroke="#d8dee4" stroke-width="1" stroke-dasharray="2 4"/>
+<rect x="139.6" y="123.4" width="28" height="34.6" rx="1" fill="#2f81f7" stroke="#fff" stroke-width="1"/>
+<rect x="143.6" y="138.3" width="20" height="19.7" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
+<rect x="147.6" y="149.4" width="12" height="8.6" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
+<text x="153.6" y="177" text-anchor="middle" font-size="10" font-weight="700">profile</text>
+<line x1="312.8" y1="62" x2="312.8" y2="158" stroke="#d8dee4" stroke-width="1" stroke-dasharray="2 4"/>
+<rect x="298.8" y="111.9" width="28" height="46.1" rx="1" fill="#2f81f7" stroke="#fff" stroke-width="1"/>
+<rect x="297.8" y="127.3" width="20" height="30.7" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
+<rect x="311.8" y="127.3" width="12" height="30.7" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
+<text x="312.8" y="177" text-anchor="middle" font-size="10" font-weight="700">skills</text>
+<line x1="472.0" y1="62" x2="472.0" y2="158" stroke="#d8dee4" stroke-width="1" stroke-dasharray="2 4"/>
+<rect x="458.0" y="70.2" width="28" height="87.8" rx="1" fill="#2f81f7" stroke="#fff" stroke-width="1"/>
+<rect x="462.0" y="102.3" width="20" height="55.7" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
+<rect x="466.0" y="117.2" width="12" height="40.8" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
+<text x="472.0" y="177" text-anchor="middle" font-size="10" font-weight="700">index</text>
+<line x1="631.2" y1="62" x2="631.2" y2="158" stroke="#d8dee4" stroke-width="1" stroke-dasharray="2 4"/>
+<rect x="617.2" y="147.9" width="28" height="10.1" rx="1" fill="#2f81f7" stroke="#fff" stroke-width="1"/>
+<rect x="621.2" y="153.2" width="20" height="4.8" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
+<rect x="625.2" y="155.0" width="12" height="3.0" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
+<text x="631.2" y="177" text-anchor="middle" font-size="10" font-weight="700">awesome</text>
+<line x1="790.4" y1="62" x2="790.4" y2="158" stroke="#d8dee4" stroke-width="1" stroke-dasharray="2 4"/>
+<rect x="776.4" y="88.4" width="28" height="69.6" rx="1" fill="#2f81f7" stroke="#fff" stroke-width="1"/>
+<rect x="780.4" y="104.2" width="20" height="53.8" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
+<rect x="784.4" y="123.9" width="12" height="34.1" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
+<text x="790.4" y="177" text-anchor="middle" font-size="10" font-weight="700">organization</text>
+<text x="870" y="190" text-anchor="end" font-size="8" fill="#6e7781">canonical boundary preview</text>
+</g></svg>
