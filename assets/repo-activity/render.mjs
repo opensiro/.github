@@ -1,9 +1,10 @@
 export const TRACKED = [
-  ['vsm-harness-profile', 'profile'],
-  ['vsm-harness-skills', 'skills'],
-  ['vsm-harness-index', 'index'],
-  ['awesome-vsm-harness', 'awesome'],
-  ['vsm-oss-organization', 'organization'],
+  ['vsm-harness-profile', 'profile', 'bounded'],
+  ['vsm-harness-skills', 'skills', 'bounded'],
+  ['vsm-harness-index', 'index', 'bounded'],
+  ['awesome-vsm-harness', 'awesome', 'bounded'],
+  ['vsm-oss-organization', 'organization', 'bounded'],
+  ['vsm-harness-capability', 'capability', 'adjacent'],
 ];
 
 const COLORS = {
@@ -17,14 +18,6 @@ const esc = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
-
-const niceMax = (value) => {
-  if (value <= 5) return 5;
-  const magnitude = 10 ** Math.floor(Math.log10(value));
-  const normalized = value / magnitude;
-  const nice = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
-  return nice * magnitude;
-};
 
 const month = (date) => date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
 
@@ -40,15 +33,17 @@ const formatPeriod = (start, end, days) => {
 };
 
 export function buildSvg(data) {
-  const rows = TRACKED.map(([repo, label]) => ({
+  const rows = TRACKED.map(([repo, label, scope]) => ({
     repo,
     label,
+    scope,
     commits: data.repos?.[repo]?.commits ?? 0,
     prs: data.repos?.[repo]?.prs ?? 0,
     issues: data.repos?.[repo]?.issues ?? 0,
   }));
+
   const observedMax = Math.max(1, ...rows.flatMap(r => [r.commits, r.prs, r.issues]));
-  const axisMax = niceMax(observedMax);
+  const maxPower = Math.max(1, Math.ceil(Math.log10(observedMax)));
   const plotTop = 62;
   const baseline = 158;
   const plotHeight = baseline - plotTop;
@@ -56,12 +51,16 @@ export function buildSvg(data) {
   const right = 870;
   const step = (right - left) / rows.length;
 
-  const tickCount = 4;
-  const ticks = Array.from({ length: tickCount + 1 }, (_, i) => axisMax * i / tickCount);
+  const logY = (value) => {
+    if (value <= 1) return baseline;
+    return baseline - (Math.log10(value) / maxPower) * plotHeight;
+  };
+
+  const ticks = Array.from({ length: maxPower + 1 }, (_, power) => 10 ** power);
   const yAxis = ticks.map((value) => {
-    const y = baseline - (value / axisMax) * plotHeight;
+    const y = logY(value);
     return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
-      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${Number.isInteger(value) ? value : value.toFixed(1)}</text>`;
+      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
   }).join('');
 
   const barWidth = { commits: 28, prs: 20, issues: 12 };
@@ -75,6 +74,7 @@ export function buildSvg(data) {
       if (!byValue.has(v)) byValue.set(v, []);
       byValue.get(v).push(key);
     }
+
     const tieOffset = {};
     for (const [value, keys] of byValue.entries()) {
       if (value <= 0 || keys.length === 1) continue;
@@ -89,11 +89,11 @@ export function buildSvg(data) {
       .map((key) => {
         const value = row[key];
         if (value <= 0) return '';
-        const h = Math.max(3, (value / axisMax) * plotHeight);
-        const y = baseline - h;
+        const y = logY(value);
+        const h = Math.max(3, baseline - y);
         const w = barWidth[key];
         const x = cx - w / 2 + (tieOffset[key] ?? 0);
-        return `<rect class="bar ${key}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w}" height="${h.toFixed(1)}" rx="1" />`;
+        return `<rect class="bar ${key}" x="${x.toFixed(1)}" y="${(baseline - h).toFixed(1)}" width="${w}" height="${h.toFixed(1)}" rx="1" />`;
       }).join('');
 
     const values = series
@@ -101,13 +101,26 @@ export function buildSvg(data) {
       .map(k => `${row[k]} ${k === 'prs' ? 'PRs' : k}`)
       .join(' · ');
 
+    const scopeLabel = row.scope === 'adjacent'
+      ? `<text x="${cx.toFixed(1)}" y="190" text-anchor="middle" class="scope-label">adjacent</text>`
+      : '';
+
     return `
-      <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}">
+      <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope === 'adjacent' ? '; adjacent research repository' : ''}">
         <line x1="${cx.toFixed(1)}" y1="${plotTop}" x2="${cx.toFixed(1)}" y2="${baseline}" class="track" />
         ${bars}
         <text x="${cx.toFixed(1)}" y="178" text-anchor="middle" class="repo-label">${esc(row.label)}</text>
+        ${scopeLabel}
       </g>`;
   }).join('');
+
+  const adjacentIndex = rows.findIndex(row => row.scope === 'adjacent');
+  const boundary = adjacentIndex > 0
+    ? (() => {
+        const x = left + step * adjacentIndex;
+        return `<line x1="${x.toFixed(1)}" y1="${plotTop - 2}" x2="${x.toFixed(1)}" y2="192" class="scope-boundary" />`;
+      })()
+    : '';
 
   const range = data.window?.start && data.window?.end
     ? `${data.window.start} - ${data.window.end}`
@@ -115,8 +128,8 @@ export function buildSvg(data) {
   const periodLabel = formatPeriod(data.window?.start, data.window?.end, data.window?.days);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
-  <title id="title">OpenSiro VSM OSS repository activity</title>
-  <desc id="desc">Activity across the five repositories in the current bounded OpenSiro VSM OSS organization for ${esc(range)}. Opaque overlapping bars show commit, pull request, and issue contributions. Equal values are separated horizontally rather than merged.</desc>
+  <title id="title">OpenSiro VSM Harness repository activity</title>
+  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization plus the adjacent experimental VSM Harness Capability repository for ${esc(range)}. The vertical axis is logarithmic: 1, 10, 100, and 1000 are equally spaced. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
@@ -129,22 +142,26 @@ export function buildSvg(data) {
     .prs { fill: ${COLORS.prs}; }
     .issues { fill: ${COLORS.issues}; }
     .repo-label { font-size: 10px; font-weight: 700; }
+    .scope-label { font-size: 7px; fill: #8c959f; letter-spacing: 0.4px; }
+    .scope-boundary { stroke: #8c959f; stroke-width: 1; stroke-dasharray: 3 4; }
     .muted { fill: #6e7781; }
     .legend-label { font-size: 9px; }
   </style>
   <rect x="0.5" y="0.5" width="899" height="199" rx="14" class="frame" />
-  <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
+  <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM HARNESS ACTIVITY</text>
   <text x="870" y="34" text-anchor="end" font-size="9" class="muted" letter-spacing="0.7">${esc(periodLabel)}</text>
 
   <g aria-hidden="true">
     <circle cx="30" cy="52" r="4" fill="${COLORS.commits}"/><text x="40" y="55" class="legend-label muted">commits</text>
     <circle cx="100" cy="52" r="4" fill="${COLORS.prs}"/><text x="110" y="55" class="legend-label muted">PRs</text>
     <circle cx="150" cy="52" r="4" fill="${COLORS.issues}"/><text x="160" y="55" class="legend-label muted">issues</text>
+    <text x="215" y="55" class="legend-label muted">log10 y</text>
   </g>
 
   ${yAxis}
   <line x1="${left}" y1="${plotTop}" x2="${left}" y2="${baseline}" class="axis" />
   <line x1="${left}" y1="${baseline}" x2="${right}" y2="${baseline}" class="axis" />
+  ${boundary}
   ${groups}
 </svg>`;
 }
