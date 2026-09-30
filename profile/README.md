@@ -83,17 +83,19 @@ Names such as *manager*, *verifier*, *planner*, *delegation*, or *learning* are 
 
 ## Core repositories
 
-| Repository | Role |
-| --- | --- |
-| **[vsm-harness-profile](https://github.com/opensiro/vsm-harness-profile)** | Authoritative, implementation-independent VSM semantics for the ecosystem. |
-| **[vsm-harness-skills](https://github.com/opensiro/vsm-harness-skills)** | Reusable assessment procedures and tooling that apply the Profile without redefining it. |
-| **[vsm-harness-index](https://github.com/opensiro/vsm-harness-index)** | Evidence-backed corpus of repository-relative harness assessments and deterministic derived views. |
-| **[vsm-harness-capability](https://github.com/opensiro/vsm-harness-capability)** | **Experimental:** evidence-backed general functional-capability research, compared one VSM function at a time and kept separate from domain-specific assessment. |
-| **[awesome-vsm-harness](https://github.com/opensiro/awesome-vsm-harness)** | Curated representative organizational forms selected from the broader corpus. |
-| **[vsm-oss-organization](https://github.com/opensiro/vsm-oss-organization)** | Experimental organizational/control construction for the bounded OpenSiro VSM Harness OSS group. |
-| **[terminal-bench-vsm](https://github.com/opensiro/terminal-bench-vsm)** | Executable research on failure-aware coding harnesses and their evaluation/growth environment. |
-| **[arctic-0](https://github.com/opensiro/arctic-0)** | Public ARCTIC-0 archive, schemas, taxonomy, authoring tools, and analysis. |
-| **[opensiro.com](https://github.com/opensiro/opensiro.com)** | Presentation layer for public orientation and visual explanations. |
+The **VSM OSS scope** column follows the current bounded scope declared by [`vsm-oss-organization`](https://github.com/opensiro/vsm-oss-organization#scope); ecosystem membership alone does not put a repository inside that control boundary.
+
+| Repository | Role | VSM OSS scope |
+| --- | --- | --- |
+| **[vsm-harness-profile](https://github.com/opensiro/vsm-harness-profile)** | Authoritative, implementation-independent VSM semantics for the ecosystem. | **in scope** |
+| **[vsm-harness-skills](https://github.com/opensiro/vsm-harness-skills)** | Reusable assessment procedures and tooling that apply the Profile without redefining it. | **in scope** |
+| **[vsm-harness-index](https://github.com/opensiro/vsm-harness-index)** | Evidence-backed corpus of repository-relative harness assessments and deterministic derived views. | **in scope** |
+| **[vsm-harness-capability](https://github.com/opensiro/vsm-harness-capability)** | **Experimental:** evidence-backed general functional-capability research, compared one VSM function at a time and kept separate from domain-specific assessment. | adjacent / out of scope |
+| **[awesome-vsm-harness](https://github.com/opensiro/awesome-vsm-harness)** | Curated representative organizational forms selected from the broader corpus. | **in scope** |
+| **[vsm-oss-organization](https://github.com/opensiro/vsm-oss-organization)** | Experimental organizational/control construction for the bounded OpenSiro VSM Harness OSS group. | **in scope** |
+| **[terminal-bench-vsm](https://github.com/opensiro/terminal-bench-vsm)** | Executable research on failure-aware coding harnesses and their evaluation/growth environment. | out of scope |
+| **[arctic-0](https://github.com/opensiro/arctic-0)** | Public ARCTIC-0 archive, schemas, taxonomy, authoring tools, and analysis. | out of scope |
+| **[opensiro.com](https://github.com/opensiro/opensiro.com)** | Presentation layer for public orientation and visual explanations. | presentation / out of scope |
 
 ## New here?
 
