@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "bounded-vsm-oss-organization",
+  "scope": "vsm-oss-bounded-system",
   "source_user": "xLagerFeuer",
   "window": {"days": 10, "start": null, "end": null},
   "as_of": null,
