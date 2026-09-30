@@ -8,16 +8,15 @@ from pathlib import Path
 USERNAME = "xLagerFeuer"
 ORG = "opensiro"
 WINDOW_DAYS = 10
+
+# Canonical five-repository boundary declared by vsm-oss-organization.
+# Adjacent research/presentation repositories are intentionally excluded.
 TRACKED = [
     "vsm-harness-profile",
     "vsm-harness-skills",
     "vsm-harness-index",
-    "vsm-harness-capability",
-    "vsm-oss-organization",
     "awesome-vsm-harness",
-    "terminal-bench-vsm",
-    "arctic-0",
-    "opensiro.com",
+    "vsm-oss-organization",
 ]
 OUT = Path("assets/repo-activity/data.json")
 
@@ -100,7 +99,7 @@ def main():
 
     payload = {
         "schema_version": 1,
-        "scope": "public-opensiro-repos",
+        "scope": "bounded-vsm-oss-organization",
         "source_user": USERNAME,
         "window": {"days": WINDOW_DAYS, "start": start.isoformat(), "end": last_complete.isoformat()},
         "as_of": last_complete.isoformat(),
