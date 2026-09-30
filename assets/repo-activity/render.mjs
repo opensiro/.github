@@ -5,6 +5,7 @@ export const TRACKED = [
   ['awesome-vsm-harness', 'awesome', 'bounded'],
   ['vsm-oss-organization', 'organization', 'bounded'],
   ['vsm-harness-capability', 'capability', 'adjacent'],
+  ['vsm-harness-research', 'research', 'private'],
 ];
 
 const COLORS = {
@@ -70,7 +71,8 @@ export function buildSvg(data) {
 
   const yAxis = majorTicks.map((value) => {
     const y = logY(value);
-    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />\n      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
+    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
+      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
   }).join('');
 
   const trackTicks = (cx) => [
@@ -127,12 +129,12 @@ export function buildSvg(data) {
       .map(k => `${row[k]} ${k === 'prs' ? 'PRs' : k}`)
       .join(' · ');
 
-    const scopeLabel = row.scope === 'adjacent'
-      ? `<text x="${cx.toFixed(1)}" y="190" text-anchor="middle" class="scope-label">adjacent</text>`
+    const scopeLabel = row.scope !== 'bounded'
+      ? `<text x="${cx.toFixed(1)}" y="190" text-anchor="middle" class="scope-label">${esc(row.scope)}</text>`
       : '';
 
     return `
-      <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope === 'adjacent' ? '; adjacent research repository' : ''}">
+      <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope !== 'bounded' ? `; ${esc(row.scope)} repository` : ''}">
         <line x1="${cx.toFixed(1)}" y1="${plotTop}" x2="${cx.toFixed(1)}" y2="${baseline}" class="track" />
         ${trackTicks(cx)}
         ${bars}
@@ -141,13 +143,11 @@ export function buildSvg(data) {
       </g>`;
   }).join('');
 
-  const adjacentIndex = rows.findIndex(row => row.scope === 'adjacent');
-  const boundary = adjacentIndex > 0
-    ? (() => {
-        const x = left + step * adjacentIndex;
-        return `<line x1="${x.toFixed(1)}" y1="${plotTop - 2}" x2="${x.toFixed(1)}" y2="192" class="scope-boundary" />`;
-      })()
-    : '';
+  const boundaries = rows.slice(1).map((row, i) => {
+    if (row.scope === rows[i].scope) return '';
+    const x = left + step * (i + 1);
+    return `<line x1="${x.toFixed(1)}" y1="${plotTop - 2}" x2="${x.toFixed(1)}" y2="192" class="scope-boundary" />`;
+  }).join('');
 
   const range = data.window?.start && data.window?.end
     ? `${data.window.start} - ${data.window.end}`
@@ -156,7 +156,7 @@ export function buildSvg(data) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
   <title id="title">OpenSiro VSM Harness repository activity</title>
-  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization plus the adjacent experimental VSM Harness Capability repository for ${esc(range)}. The vertical axis is logarithmic: powers of ten are equally spaced, with per-repository track ticks at 2x and 5x subdivisions plus the geometric midpoint of each decade for visual estimation. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
+  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization, the adjacent experimental VSM Harness Capability repository, and the private VSM Harness Research repository for ${esc(range)}. The vertical axis is logarithmic: powers of ten are equally spaced, with per-repository track ticks at 2x and 5x subdivisions plus the geometric midpoint of each decade for visual estimation. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
@@ -191,7 +191,7 @@ export function buildSvg(data) {
   ${yAxis}
   <line x1="${left}" y1="${plotTop}" x2="${left}" y2="${baseline}" class="axis" />
   <line x1="${left}" y1="${baseline}" x2="${right}" y2="${baseline}" class="axis" />
-  ${boundary}
+  ${boundaries}
   ${groups}
 </svg>`;
 }
