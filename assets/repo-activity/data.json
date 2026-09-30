@@ -1,6 +1,16 @@
 {
-  "schema_version": 1,
-  "scope": "vsm-oss-bounded-system",
+  "schema_version": 2,
+  "scope": "vsm-harness-activity",
+  "bounded_scope_repos": [
+    "vsm-harness-profile",
+    "vsm-harness-skills",
+    "vsm-harness-index",
+    "awesome-vsm-harness",
+    "vsm-oss-organization"
+  ],
+  "adjacent_repos": [
+    "vsm-harness-capability"
+  ],
   "source_user": "xLagerFeuer",
   "metric_semantics": {
     "commits": "authored commits visible in repository commit history",
@@ -38,6 +48,11 @@
       "commits": 159,
       "prs": 60,
       "issues": 37
+    },
+    "vsm-harness-capability": {
+      "commits": 109,
+      "prs": 72,
+      "issues": 34
     }
   }
 }
