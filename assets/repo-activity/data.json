@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "scope": "vsm-harness-activity",
   "bounded_scope_repos": [
     "vsm-harness-profile",
@@ -10,6 +10,9 @@
   ],
   "adjacent_repos": [
     "vsm-harness-capability"
+  ],
+  "private_repos": [
+    "vsm-harness-research"
   ],
   "source_user": "xLagerFeuer",
   "metric_semantics": {
@@ -53,6 +56,11 @@
       "commits": 109,
       "prs": 72,
       "issues": 34
+    },
+    "vsm-harness-research": {
+      "commits": 291,
+      "prs": 115,
+      "issues": 109
     }
   }
 }

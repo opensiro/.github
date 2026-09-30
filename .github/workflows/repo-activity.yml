@@ -30,6 +30,7 @@ jobs:
       - name: Update activity data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENSIRO_ACTIVITY_TOKEN: ${{ secrets.OPENSIRO_ACTIVITY_TOKEN }}
         run: python scripts/update_repo_activity.py
       - name: Render SVG from HTML renderer data
         run: node assets/repo-activity/render_svg.mjs
