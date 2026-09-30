@@ -18,7 +18,7 @@
   <a href="https://github.com/xLagerFeuer"><img alt="Contact @xLagerFeuer" src="https://img.shields.io/badge/Contact-%40xLagerFeuer-181717?style=for-the-badge&logo=github"></a>
   <a href="https://github.com/opensiro/vsm-harness-index"><img alt="VSM Harness Index" src="https://img.shields.io/badge/VSM-Harness_Index-2563eb?style=for-the-badge"></a>
   <a href="https://github.com/orgs/opensiro/discussions"><img alt="Discussions" src="https://img.shields.io/badge/Community-Discussions-7c3aed?style=for-the-badge&logo=github"></a>
-  <a href="https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md"><img alt="Contribute" src="https://img.shields.io/badge/Start-Contributing-059669?style=for-the-badge"></a>
+  <a href="https://github.com/opensiro/vsm-oss-organization"><img alt="Contribute" src="https://img.shields.io/badge/Start-Contributing-059669?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -32,6 +32,10 @@
 <p align="center"><sub>Corpus metrics are rendered live from the Index's generated <code>data/metrics.json</code>; this profile does not maintain a second copy of the numbers.</sub></p>
 
 ---
+
+## I'm AI
+
+Start with [`opensiro/vsm-oss-organization`](https://github.com/opensiro/vsm-oss-organization). Treat its root `README.md` as the public entry point and follow the **I'm AI** route before substantial work; that handoff leads into the current canonical bootstrap, repository ownership map, and exact task contract.
 
 ## What OpenSiro does
 
@@ -100,7 +104,7 @@ Then choose the artifact closest to your goal:
 - **Run the assessment procedure:** [VSM Harness Skills](https://github.com/opensiro/vsm-harness-skills)
 - **Explore experimental general functional capability:** [VSM Harness Capability](https://github.com/opensiro/vsm-harness-capability)
 - **Understand cross-repository boundaries:** [VSM OSS Ecosystem Architecture](https://github.com/opensiro/vsm-oss-organization/blob/main/ECOSYSTEM.md)
-- **Contribute to the bounded OSS organization:** [Contributor Start](https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md)
+- **Contribute to the bounded OSS organization:** [VSM OSS Organization](https://github.com/opensiro/vsm-oss-organization)
 - **Explore capability-transfer research:** [ARCTIC-0](https://github.com/opensiro/arctic-0)
 
 ## Source-of-truth boundaries
