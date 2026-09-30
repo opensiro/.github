@@ -19,17 +19,27 @@ BOUNDED = [
 ADJACENT = [
     "vsm-harness-capability",
 ]
-TRACKED = [*BOUNDED, *ADJACENT]
+PRIVATE = [
+    "vsm-harness-research",
+]
+TRACKED = [*BOUNDED, *ADJACENT, *PRIVATE]
 OUT = Path("assets/repo-activity/data.json")
 
 
-def request_json(url):
+def request_json(url, *, private=False):
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": "opensiro-org-repo-activity",
         "X-GitHub-Api-Version": "2022-11-28",
     }
-    token = os.environ.get("GITHUB_TOKEN")
+    if private:
+        token = os.environ.get("OPENSIRO_ACTIVITY_TOKEN")
+        if not token:
+            raise RuntimeError(
+                "OPENSIRO_ACTIVITY_TOKEN is required to refresh private repository activity"
+            )
+    else:
+        token = os.environ.get("OPENSIRO_ACTIVITY_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
     req = urllib.request.Request(url, headers=headers)
@@ -40,6 +50,7 @@ def request_json(url):
 def authored_commit_count(repo, start, end):
     total = 0
     page = 1
+    is_private = repo in PRIVATE
     while True:
         params = urllib.parse.urlencode({
             "author": USERNAME,
@@ -48,7 +59,10 @@ def authored_commit_count(repo, start, end):
             "per_page": 100,
             "page": page,
         })
-        items = request_json(f"https://api.github.com/repos/{ORG}/{repo}/commits?{params}")
+        items = request_json(
+            f"https://api.github.com/repos/{ORG}/{repo}/commits?{params}",
+            private=is_private,
+        )
         total += len(items)
         if len(items) < 100:
             return total
@@ -61,7 +75,10 @@ def authored_issue_count(repo, kind, start, end):
         f"created:{start.isoformat()}..{end.isoformat()}"
     )
     params = urllib.parse.urlencode({"q": query, "per_page": 1})
-    return int(request_json(f"https://api.github.com/search/issues?{params}")["total_count"])
+    return int(request_json(
+        f"https://api.github.com/search/issues?{params}",
+        private=repo in PRIVATE,
+    )["total_count"])
 
 
 def main():
@@ -77,15 +94,16 @@ def main():
         }
 
     payload = {
-        "schema_version": 2,
+        "schema_version": 3,
         "scope": "vsm-harness-activity",
         "bounded_scope_repos": BOUNDED,
         "adjacent_repos": ADJACENT,
+        "private_repos": PRIVATE,
         "source_user": USERNAME,
         "metric_semantics": {
             "commits": "authored commits visible in repository commit history",
             "prs": "authored pull requests created in the window",
-            "issues": "authored issues created in the window"
+            "issues": "authored issues created in the window",
         },
         "window": {
             "days": WINDOW_DAYS,
