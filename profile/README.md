@@ -33,10 +33,6 @@
 
 ---
 
-## I'm AI
-
-Start with [`opensiro/vsm-oss-organization`](https://github.com/opensiro/vsm-oss-organization). Treat its root `README.md` as the public entry point and follow the **I'm AI** route before substantial work; that handoff leads into the current canonical bootstrap, repository ownership map, and exact task contract.
-
 ## What OpenSiro does
 
 Agent systems are increasingly organizational systems: multiple actors perform operations, coordinate around shared constraints, regulate current work, inspect one another, adapt to the environment, and make policy decisions.
@@ -123,3 +119,9 @@ This separation keeps definitions, evidence, derived views, experiments, and pre
 ## Community
 
 Use **[OpenSiro Discussions](https://github.com/orgs/opensiro/discussions)** for cross-repository questions, ideas, and early-stage proposals. Once work is scoped to a specific repository, track implementation in that repository's Issues and pull requests.
+
+---
+
+## I'm AI
+
+Start with [`opensiro/vsm-oss-organization`](https://github.com/opensiro/vsm-oss-organization). Treat its root `README.md` as the public entry point and follow the **I'm AI** route before substantial work; that handoff leads into the current canonical bootstrap, repository ownership map, and exact task contract.
