@@ -18,18 +18,13 @@ const esc = (value) => String(value)
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
 
-function niceScale(maxValue) {
-  if (maxValue <= 0) return { max: 10, ticks: [0, 5, 10] };
-  const targetStep = maxValue / 4;
-  const magnitude = 10 ** Math.floor(Math.log10(targetStep));
-  const normalized = targetStep / magnitude;
-  const factor = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
-  const step = factor * magnitude;
-  const max = Math.ceil(maxValue / step) * step;
-  const ticks = [];
-  for (let value = 0; value <= max + step / 2; value += step) ticks.push(value);
-  return { max, ticks };
-}
+const niceMax = (value) => {
+  if (value <= 5) return 5;
+  const magnitude = 10 ** Math.floor(Math.log10(value));
+  const normalized = value / magnitude;
+  const nice = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+  return nice * magnitude;
+};
 
 export function buildSvg(data) {
   const rows = TRACKED.map(([repo, label]) => ({
@@ -39,28 +34,25 @@ export function buildSvg(data) {
     prs: data.repos?.[repo]?.prs ?? 0,
     issues: data.repos?.[repo]?.issues ?? 0,
   }));
-
-  const rawMax = Math.max(0, ...rows.flatMap(r => [r.commits, r.prs, r.issues]));
-  const scale = niceScale(rawMax);
-  const plotTop = 68;
+  const observedMax = Math.max(1, ...rows.flatMap(r => [r.commits, r.prs, r.issues]));
+  const axisMax = niceMax(observedMax);
+  const plotTop = 62;
   const baseline = 158;
   const plotHeight = baseline - plotTop;
-  const axisX = 48;
-  const left = 68;
+  const left = 74;
   const right = 870;
   const step = (right - left) / rows.length;
 
-  const barWidth = { commits: 32, prs: 23, issues: 14 };
-  const series = ['commits', 'prs', 'issues'];
-
-  const yFor = (value) => baseline - (value / scale.max) * plotHeight;
-
-  const grid = scale.ticks.map((tick) => {
-    const y = yFor(tick);
-    return `
-      <line x1="${axisX}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
-      <text x="${axisX - 7}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${tick}</text>`;
+  const tickCount = 4;
+  const ticks = Array.from({ length: tickCount + 1 }, (_, i) => axisMax * i / tickCount);
+  const yAxis = ticks.map((value) => {
+    const y = baseline - (value / axisMax) * plotHeight;
+    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
+      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${Number.isInteger(value) ? value : value.toFixed(1)}</text>`;
   }).join('');
+
+  const barWidth = { commits: 28, prs: 20, issues: 12 };
+  const series = ['commits', 'prs', 'issues'];
 
   const groups = rows.map((row, i) => {
     const cx = left + step * (i + 0.5);
@@ -70,11 +62,10 @@ export function buildSvg(data) {
       if (!byValue.has(v)) byValue.set(v, []);
       byValue.get(v).push(key);
     }
-
     const tieOffset = {};
     for (const [value, keys] of byValue.entries()) {
       if (value <= 0 || keys.length === 1) continue;
-      const gap = 8;
+      const gap = 5;
       keys.forEach((key, index) => {
         tieOffset[key] = (index - (keys.length - 1) / 2) * gap;
       });
@@ -85,8 +76,8 @@ export function buildSvg(data) {
       .map((key) => {
         const value = row[key];
         if (value <= 0) return '';
-        const y = yFor(value);
-        const h = Math.max(3, baseline - y);
+        const h = Math.max(3, (value / axisMax) * plotHeight);
+        const y = baseline - h;
         const w = barWidth[key];
         const x = cx - w / 2 + (tieOffset[key] ?? 0);
         return `<rect class="bar ${key}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w}" height="${h.toFixed(1)}" rx="1" />`;
@@ -111,7 +102,7 @@ export function buildSvg(data) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
   <title id="title">OpenSiro VSM OSS repository activity</title>
-  <desc id="desc">Activity in the five repositories of the bounded OpenSiro VSM OSS organization for ${esc(range)}. Opaque overlapping bars show commit, pull request, and issue contributions. Equal values are separated horizontally rather than merged.</desc>
+  <desc id="desc">Activity across the five repositories in the current bounded OpenSiro VSM OSS organization for ${esc(range)}. Opaque overlapping bars show commit, pull request, and issue contributions. Equal values are separated horizontally rather than merged.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
@@ -128,8 +119,8 @@ export function buildSvg(data) {
     .legend-label { font-size: 9px; }
   </style>
   <rect x="0.5" y="0.5" width="899" height="199" rx="14" class="frame" />
-  <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / REPOSITORY ACTIVITY</text>
-  <text x="870" y="34" text-anchor="end" font-size="10" class="muted" letter-spacing="0.8">VSM OSS · 10D</text>
+  <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
+  <text x="870" y="34" text-anchor="end" font-size="10" class="muted" letter-spacing="0.8">BOUNDED SYSTEM · 10D</text>
 
   <g aria-hidden="true">
     <circle cx="30" cy="52" r="4" fill="${COLORS.commits}"/><text x="40" y="55" class="legend-label muted">commits</text>
@@ -137,8 +128,9 @@ export function buildSvg(data) {
     <circle cx="150" cy="52" r="4" fill="${COLORS.issues}"/><text x="160" y="55" class="legend-label muted">issues</text>
   </g>
 
-  ${grid}
-  <line x1="${axisX}" y1="${plotTop}" x2="${axisX}" y2="${baseline}" class="axis" />
+  ${yAxis}
+  <line x1="${left}" y1="${plotTop}" x2="${left}" y2="${baseline}" class="axis" />
+  <line x1="${left}" y1="${baseline}" x2="${right}" y2="${baseline}" class="axis" />
   ${groups}
   <text x="870" y="190" text-anchor="end" font-size="8" class="muted">through ${esc(data.as_of ?? 'n/a')}</text>
 </svg>`;
