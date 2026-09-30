@@ -26,6 +26,19 @@ const niceMax = (value) => {
   return nice * magnitude;
 };
 
+const month = (date) => date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
+
+const formatPeriod = (start, end, days) => {
+  if (!start || !end) return `${days ?? 10} COMPLETED DAYS`;
+  const a = new Date(`${start}T00:00:00Z`);
+  const b = new Date(`${end}T00:00:00Z`);
+  if (Number.isNaN(a.getTime()) || Number.isNaN(b.getTime())) return `${days ?? 10} COMPLETED DAYS`;
+  const range = a.getUTCMonth() === b.getUTCMonth()
+    ? `${month(a)} ${a.getUTCDate()}-${b.getUTCDate()}`
+    : `${month(a)} ${a.getUTCDate()}-${month(b)} ${b.getUTCDate()}`;
+  return `${range} · ${days ?? 10} COMPLETED DAYS`;
+};
+
 export function buildSvg(data) {
   const rows = TRACKED.map(([repo, label]) => ({
     repo,
@@ -99,6 +112,7 @@ export function buildSvg(data) {
   const range = data.window?.start && data.window?.end
     ? `${data.window.start} - ${data.window.end}`
     : '10 completed days';
+  const periodLabel = formatPeriod(data.window?.start, data.window?.end, data.window?.days);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
   <title id="title">OpenSiro VSM OSS repository activity</title>
@@ -120,7 +134,7 @@ export function buildSvg(data) {
   </style>
   <rect x="0.5" y="0.5" width="899" height="199" rx="14" class="frame" />
   <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
-  <text x="870" y="34" text-anchor="end" font-size="10" class="muted" letter-spacing="0.8">BOUNDED SYSTEM · 10D</text>
+  <text x="870" y="34" text-anchor="end" font-size="9" class="muted" letter-spacing="0.7">${esc(periodLabel)}</text>
 
   <g aria-hidden="true">
     <circle cx="30" cy="52" r="4" fill="${COLORS.commits}"/><text x="40" y="55" class="legend-label muted">commits</text>
@@ -132,6 +146,5 @@ export function buildSvg(data) {
   <line x1="${left}" y1="${plotTop}" x2="${left}" y2="${baseline}" class="axis" />
   <line x1="${left}" y1="${baseline}" x2="${right}" y2="${baseline}" class="axis" />
   ${groups}
-  <text x="870" y="190" text-anchor="end" font-size="8" class="muted">through ${esc(data.as_of ?? 'n/a')}</text>
 </svg>`;
 }
