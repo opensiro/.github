@@ -9,13 +9,17 @@ from pathlib import Path
 USERNAME = "xLagerFeuer"
 ORG = "opensiro"
 WINDOW_DAYS = 10
-TRACKED = [
+BOUNDED = [
     "vsm-harness-profile",
     "vsm-harness-skills",
     "vsm-harness-index",
     "awesome-vsm-harness",
     "vsm-oss-organization",
 ]
+ADJACENT = [
+    "vsm-harness-capability",
+]
+TRACKED = [*BOUNDED, *ADJACENT]
 OUT = Path("assets/repo-activity/data.json")
 
 
@@ -73,8 +77,10 @@ def main():
         }
 
     payload = {
-        "schema_version": 1,
-        "scope": "vsm-oss-bounded-system",
+        "schema_version": 2,
+        "scope": "vsm-harness-activity",
+        "bounded_scope_repos": BOUNDED,
+        "adjacent_repos": ADJACENT,
         "source_user": USERNAME,
         "metric_semantics": {
             "commits": "authored commits visible in repository commit history",
