@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
+  <title id="title">OpenSiro VSM OSS repository activity</title>
+  <desc id="desc">Activity across the five repositories in the current bounded OpenSiro VSM OSS organization for 2026-09-20 - 2026-09-29. Opaque overlapping bars show commit, pull request, and issue contributions. Equal values are separated horizontally rather than merged.</desc>
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
+    .frame { fill: #ffffff; stroke: #d0d7de; }
+    .track { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 2 4; }
+    .grid { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 4 5; }
+    .axis { stroke: #57606a; stroke-width: 1; }
+    .axis-label { font-size: 8px; fill: #6e7781; }
+    .bar { stroke: #ffffff; stroke-width: 1; shape-rendering: crispEdges; }
+    .commits { fill: #2f81f7; }
+    .prs { fill: #2da44e; }
+    .issues { fill: #bf8700; }
+    .repo-label { font-size: 10px; font-weight: 700; }
+    .muted { fill: #6e7781; }
+    .legend-label { font-size: 9px; }
+  </style>
+  <rect x="0.5" y="0.5" width="899" height="199" rx="14" class="frame" />
+  <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
+  <text x="870" y="34" text-anchor="end" font-size="9" class="muted" letter-spacing="0.7">SEP 20-29 · 10 COMPLETED DAYS</text>
+
+  <g aria-hidden="true">
+    <circle cx="30" cy="52" r="4" fill="#2f81f7"/><text x="40" y="55" class="legend-label muted">commits</text>
+    <circle cx="100" cy="52" r="4" fill="#2da44e"/><text x="110" y="55" class="legend-label muted">PRs</text>
+    <circle cx="150" cy="52" r="4" fill="#bf8700"/><text x="160" y="55" class="legend-label muted">issues</text>
+  </g>
+
+  <line x1="74" y1="158.0" x2="870" y2="158.0" class="grid" />
+      <text x="64" y="161.0" text-anchor="end" class="axis-label">0</text><line x1="74" y1="134.0" x2="870" y2="134.0" class="grid" />
+      <text x="64" y="137.0" text-anchor="end" class="axis-label">250</text><line x1="74" y1="110.0" x2="870" y2="110.0" class="grid" />
+      <text x="64" y="113.0" text-anchor="end" class="axis-label">500</text><line x1="74" y1="86.0" x2="870" y2="86.0" class="grid" />
+      <text x="64" y="89.0" text-anchor="end" class="axis-label">750</text><line x1="74" y1="62.0" x2="870" y2="62.0" class="grid" />
+      <text x="64" y="65.0" text-anchor="end" class="axis-label">1000</text>
+  <line x1="74" y1="62" x2="74" y2="158" class="axis" />
+  <line x1="74" y1="158" x2="870" y2="158" class="axis" />
+  
+      <g class="repo" aria-label="vsm-harness-profile: 13 commits · 8 PRs · 2 issues">
+        <line x1="153.6" y1="62" x2="153.6" y2="158" class="track" />
+        <rect class="bar commits" x="139.6" y="155.0" width="28" height="3.0" rx="1" /><rect class="bar prs" x="143.6" y="155.0" width="20" height="3.0" rx="1" /><rect class="bar issues" x="147.6" y="155.0" width="12" height="3.0" rx="1" />
+        <text x="153.6" y="178" text-anchor="middle" class="repo-label">profile</text>
+      </g>
+      <g class="repo" aria-label="vsm-harness-skills: 30 commits · 15 PRs · 6 issues">
+        <line x1="312.8" y1="62" x2="312.8" y2="158" class="track" />
+        <rect class="bar commits" x="298.8" y="155.0" width="28" height="3.0" rx="1" /><rect class="bar prs" x="302.8" y="155.0" width="20" height="3.0" rx="1" /><rect class="bar issues" x="306.8" y="155.0" width="12" height="3.0" rx="1" />
+        <text x="312.8" y="178" text-anchor="middle" class="repo-label">skills</text>
+      </g>
+      <g class="repo" aria-label="vsm-harness-index: 903 commits · 555 PRs · 270 issues">
+        <line x1="472.0" y1="62" x2="472.0" y2="158" class="track" />
+        <rect class="bar commits" x="458.0" y="71.3" width="28" height="86.7" rx="1" /><rect class="bar prs" x="462.0" y="104.7" width="20" height="53.3" rx="1" /><rect class="bar issues" x="466.0" y="132.1" width="12" height="25.9" rx="1" />
+        <text x="472.0" y="178" text-anchor="middle" class="repo-label">index</text>
+      </g>
+      <g class="repo" aria-label="awesome-vsm-harness: 11 commits · 7 PRs · 1 issues">
+        <line x1="631.2" y1="62" x2="631.2" y2="158" class="track" />
+        <rect class="bar commits" x="617.2" y="155.0" width="28" height="3.0" rx="1" /><rect class="bar prs" x="621.2" y="155.0" width="20" height="3.0" rx="1" /><rect class="bar issues" x="625.2" y="155.0" width="12" height="3.0" rx="1" />
+        <text x="631.2" y="178" text-anchor="middle" class="repo-label">awesome</text>
+      </g>
+      <g class="repo" aria-label="vsm-oss-organization: 159 commits · 60 PRs · 37 issues">
+        <line x1="790.4" y1="62" x2="790.4" y2="158" class="track" />
+        <rect class="bar commits" x="776.4" y="142.7" width="28" height="15.3" rx="1" /><rect class="bar prs" x="780.4" y="152.2" width="20" height="5.8" rx="1" /><rect class="bar issues" x="784.4" y="154.4" width="12" height="3.6" rx="1" />
+        <text x="790.4" y="178" text-anchor="middle" class="repo-label">organization</text>
+      </g>
+</svg>
