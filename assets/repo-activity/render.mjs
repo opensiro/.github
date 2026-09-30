@@ -56,12 +56,38 @@ export function buildSvg(data) {
     return baseline - (Math.log10(value) / maxPower) * plotHeight;
   };
 
-  const ticks = Array.from({ length: maxPower + 1 }, (_, power) => 10 ** power);
-  const yAxis = ticks.map((value) => {
+  const majorTicks = Array.from({ length: maxPower + 1 }, (_, power) => 10 ** power);
+  const minorTicks = [];
+  const midpointTicks = [];
+  for (let power = 0; power < maxPower; power += 1) {
+    const decade = 10 ** power;
+    for (const factor of [2, 5]) {
+      const value = factor * decade;
+      if (value <= 10 ** maxPower) minorTicks.push({ value, factor });
+    }
+    midpointTicks.push(Math.sqrt(10) * decade);
+  }
+
+  const yAxis = majorTicks.map((value) => {
     const y = logY(value);
-    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
-      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
+    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />\n      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
   }).join('');
+
+  const trackTicks = (cx) => [
+    ...minorTicks.map(({ value, factor }) => {
+      const y = logY(value);
+      const half = factor === 5 ? 3 : 2.5;
+      return `<line x1="${(cx - half).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + half).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick minor factor-${factor}" />`;
+    }),
+    ...midpointTicks.map((value) => {
+      const y = logY(value);
+      return `<line x1="${(cx - 3.5).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + 3.5).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick midpoint" />`;
+    }),
+    ...majorTicks.map((value) => {
+      const y = logY(value);
+      return `<line x1="${(cx - 4.5).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(cx + 4.5).toFixed(1)}" y2="${y.toFixed(1)}" class="track-tick major" />`;
+    }),
+  ].join('');
 
   const barWidth = { commits: 28, prs: 20, issues: 12 };
   const series = ['commits', 'prs', 'issues'];
@@ -108,6 +134,7 @@ export function buildSvg(data) {
     return `
       <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope === 'adjacent' ? '; adjacent research repository' : ''}">
         <line x1="${cx.toFixed(1)}" y1="${plotTop}" x2="${cx.toFixed(1)}" y2="${baseline}" class="track" />
+        ${trackTicks(cx)}
         ${bars}
         <text x="${cx.toFixed(1)}" y="178" text-anchor="middle" class="repo-label">${esc(row.label)}</text>
         ${scopeLabel}
@@ -129,11 +156,14 @@ export function buildSvg(data) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
   <title id="title">OpenSiro VSM Harness repository activity</title>
-  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization plus the adjacent experimental VSM Harness Capability repository for ${esc(range)}. The vertical axis is logarithmic: 1, 10, 100, and 1000 are equally spaced. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
+  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization plus the adjacent experimental VSM Harness Capability repository for ${esc(range)}. The vertical axis is logarithmic: powers of ten are equally spaced, with per-repository track ticks at 2x and 5x subdivisions plus the geometric midpoint of each decade for visual estimation. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
     .track { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 2 4; }
+    .track-tick { stroke: #8c959f; stroke-width: 0.8; stroke-linecap: round; shape-rendering: crispEdges; pointer-events: none; }
+    .track-tick.midpoint { stroke-width: 0.9; }
+    .track-tick.major { stroke-width: 1; }
     .grid { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 4 5; }
     .axis { stroke: #57606a; stroke-width: 1; }
     .axis-label { font-size: 8px; fill: #6e7781; }
