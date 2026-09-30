@@ -2,7 +2,7 @@
 <rect x="0.5" y="0.5" width="899" height="199" rx="14" fill="#fff" stroke="#d0d7de"/>
 <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,Liberation Mono,monospace" fill="#18181b">
 <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM OSS ACTIVITY</text>
-<text x="870" y="34" text-anchor="end" font-size="9" fill="#6e7781" letter-spacing=".7">LAYOUT PREVIEW · SAMPLE DATA</text>
+<text x="870" y="34" text-anchor="end" font-size="9" fill="#6e7781" letter-spacing=".7">SEP 20-29 · 10 COMPLETED DAYS</text>
 <circle cx="30" cy="52" r="4" fill="#2f81f7"/>
 <text x="40" y="55" font-size="9" fill="#6e7781">commits</text>
 <circle cx="100" cy="52" r="4" fill="#2da44e"/>
@@ -46,5 +46,4 @@
 <rect x="780.4" y="104.2" width="20" height="53.8" rx="1" fill="#2da44e" stroke="#fff" stroke-width="1"/>
 <rect x="784.4" y="123.9" width="12" height="34.1" rx="1" fill="#bf8700" stroke="#fff" stroke-width="1"/>
 <text x="790.4" y="177" text-anchor="middle" font-size="10" font-weight="700">organization</text>
-<text x="870" y="190" text-anchor="end" font-size="8" fill="#6e7781">canonical boundary preview</text>
 </g></svg>
