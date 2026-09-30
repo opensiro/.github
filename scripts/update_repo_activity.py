@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import json
 import os
+import urllib.parse
 import urllib.request
-from datetime import datetime, time, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 USERNAME = "xLagerFeuer"
@@ -17,94 +18,81 @@ TRACKED = [
 ]
 OUT = Path("assets/repo-activity/data.json")
 
-QUERY = r'''
-query($user: String!, $from: DateTime!, $to: DateTime!) {
-  user(login: $user) {
-    contributionsCollection(from: $from, to: $to) {
-      commitContributionsByRepository(maxRepositories: 100) {
-        repository { name nameWithOwner isPrivate }
-        contributions(first: 1) { totalCount }
-      }
-      pullRequestContributionsByRepository(maxRepositories: 100) {
-        repository { name nameWithOwner isPrivate }
-        contributions(first: 1) { totalCount }
-      }
-      issueContributionsByRepository(maxRepositories: 100) {
-        repository { name nameWithOwner isPrivate }
-        contributions(first: 1) { totalCount }
-      }
+
+def request_json(url):
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "opensiro-org-repo-activity",
+        "X-GitHub-Api-Version": "2022-11-28",
     }
-  }
-}
-'''
-
-
-def graphql(query, variables):
     token = os.environ.get("GITHUB_TOKEN")
-    if not token:
-        raise RuntimeError("GITHUB_TOKEN is required")
-    payload = json.dumps({"query": query, "variables": variables}).encode()
-    req = urllib.request.Request(
-        "https://api.github.com/graphql",
-        data=payload,
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-            "User-Agent": "opensiro-org-repo-activity",
-        },
-        method="POST",
-    )
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req) as response:
-        body = json.load(response)
-    if body.get("errors"):
-        raise RuntimeError(json.dumps(body["errors"], indent=2))
-    return body["data"]
+        return json.load(response)
+
+
+def authored_commit_count(repo, start, end):
+    total = 0
+    page = 1
+    while True:
+        params = urllib.parse.urlencode({
+            "author": USERNAME,
+            "since": f"{start.isoformat()}T00:00:00Z",
+            "until": f"{end.isoformat()}T23:59:59Z",
+            "per_page": 100,
+            "page": page,
+        })
+        items = request_json(f"https://api.github.com/repos/{ORG}/{repo}/commits?{params}")
+        total += len(items)
+        if len(items) < 100:
+            return total
+        page += 1
+
+
+def authored_issue_count(repo, kind, start, end):
+    query = (
+        f"repo:{ORG}/{repo} author:{USERNAME} is:{kind} "
+        f"created:{start.isoformat()}..{end.isoformat()}"
+    )
+    params = urllib.parse.urlencode({"q": query, "per_page": 1})
+    return int(request_json(f"https://api.github.com/search/issues?{params}")["total_count"])
 
 
 def main():
     last_complete = datetime.now(timezone.utc).date() - timedelta(days=1)
     start = last_complete - timedelta(days=WINDOW_DAYS - 1)
-    from_dt = datetime.combine(start, time.min, tzinfo=timezone.utc)
-    to_dt = datetime.combine(last_complete, time.max, tzinfo=timezone.utc)
 
-    data = graphql(QUERY, {
-        "user": USERNAME,
-        "from": from_dt.isoformat().replace("+00:00", "Z"),
-        "to": to_dt.isoformat().replace("+00:00", "Z"),
-    })
-    user = data.get("user")
-    if not user:
-        raise RuntimeError(f"GitHub user not found: {USERNAME}")
-    c = user["contributionsCollection"]
-
-    repos = {name: {"commits": 0, "prs": 0, "issues": 0} for name in TRACKED}
-    mapping = {
-        "commitContributionsByRepository": "commits",
-        "pullRequestContributionsByRepository": "prs",
-        "issueContributionsByRepository": "issues",
-    }
-    for source, target in mapping.items():
-        for item in c.get(source, []):
-            repo = item.get("repository") or {}
-            if repo.get("isPrivate"):
-                continue
-            full = repo.get("nameWithOwner") or ""
-            name = repo.get("name") or ""
-            if not full.startswith(f"{ORG}/") or name not in repos:
-                continue
-            repos[name][target] = int((item.get("contributions") or {}).get("totalCount") or 0)
+    repos = {}
+    for repo in TRACKED:
+        repos[repo] = {
+            "commits": authored_commit_count(repo, start, last_complete),
+            "prs": authored_issue_count(repo, "pr", start, last_complete),
+            "issues": authored_issue_count(repo, "issue", start, last_complete),
+        }
 
     payload = {
         "schema_version": 1,
         "scope": "vsm-oss-bounded-system",
         "source_user": USERNAME,
-        "window": {"days": WINDOW_DAYS, "start": start.isoformat(), "end": last_complete.isoformat()},
+        "metric_semantics": {
+            "commits": "authored commits visible in repository commit history",
+            "prs": "authored pull requests created in the window",
+            "issues": "authored issues created in the window"
+        },
+        "window": {
+            "days": WINDOW_DAYS,
+            "start": start.isoformat(),
+            "end": last_complete.isoformat(),
+        },
         "as_of": last_complete.isoformat(),
         "repos": repos,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, indent=2))
+
 
 if __name__ == "__main__":
     main()
