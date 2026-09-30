@@ -8,9 +8,6 @@ from pathlib import Path
 USERNAME = "xLagerFeuer"
 ORG = "opensiro"
 WINDOW_DAYS = 10
-
-# Canonical five-repository boundary declared by vsm-oss-organization.
-# Adjacent research/presentation repositories are intentionally excluded.
 TRACKED = [
     "vsm-harness-profile",
     "vsm-harness-skills",
@@ -99,7 +96,7 @@ def main():
 
     payload = {
         "schema_version": 1,
-        "scope": "bounded-vsm-oss-organization",
+        "scope": "vsm-oss-bounded-system",
         "source_user": USERNAME,
         "window": {"days": WINDOW_DAYS, "start": start.isoformat(), "end": last_complete.isoformat()},
         "as_of": last_complete.isoformat(),
