@@ -2,13 +2,42 @@
   "schema_version": 1,
   "scope": "vsm-oss-bounded-system",
   "source_user": "xLagerFeuer",
-  "window": {"days": 10, "start": null, "end": null},
-  "as_of": null,
+  "metric_semantics": {
+    "commits": "authored commits visible in repository commit history",
+    "prs": "authored pull requests created in the window",
+    "issues": "authored issues created in the window"
+  },
+  "window": {
+    "days": 10,
+    "start": "2026-09-20",
+    "end": "2026-09-29"
+  },
+  "as_of": "2026-09-29",
   "repos": {
-    "vsm-harness-profile": {"commits": 0, "prs": 0, "issues": 0},
-    "vsm-harness-skills": {"commits": 0, "prs": 0, "issues": 0},
-    "vsm-harness-index": {"commits": 0, "prs": 0, "issues": 0},
-    "awesome-vsm-harness": {"commits": 0, "prs": 0, "issues": 0},
-    "vsm-oss-organization": {"commits": 0, "prs": 0, "issues": 0}
+    "vsm-harness-profile": {
+      "commits": 13,
+      "prs": 8,
+      "issues": 2
+    },
+    "vsm-harness-skills": {
+      "commits": 30,
+      "prs": 15,
+      "issues": 6
+    },
+    "vsm-harness-index": {
+      "commits": 903,
+      "prs": 555,
+      "issues": 270
+    },
+    "awesome-vsm-harness": {
+      "commits": 11,
+      "prs": 7,
+      "issues": 1
+    },
+    "vsm-oss-organization": {
+      "commits": 159,
+      "prs": 60,
+      "issues": 37
+    }
   }
 }
