@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - ".github/workflows/repo-activity.yml"
+      - "profile/README.md"
       - "scripts/update_repo_activity.py"
       - "assets/repo-activity/index.html"
       - "assets/repo-activity/render.mjs"
