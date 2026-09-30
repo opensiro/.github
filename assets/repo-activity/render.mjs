@@ -70,8 +70,7 @@ export function buildSvg(data) {
 
   const yAxis = majorTicks.map((value) => {
     const y = logY(value);
-    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />
-      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
+    return `<line x1="${left}" y1="${y.toFixed(1)}" x2="${right}" y2="${y.toFixed(1)}" class="grid" />\n      <text x="${left - 10}" y="${(y + 3).toFixed(1)}" text-anchor="end" class="axis-label">${value}</text>`;
   }).join('');
 
   const trackTicks = (cx) => [
@@ -135,8 +134,8 @@ export function buildSvg(data) {
     return `
       <g class="repo" aria-label="${esc(row.repo)}: ${esc(values)}${row.scope === 'adjacent' ? '; adjacent research repository' : ''}">
         <line x1="${cx.toFixed(1)}" y1="${plotTop}" x2="${cx.toFixed(1)}" y2="${baseline}" class="track" />
-        ${bars}
         ${trackTicks(cx)}
+        ${bars}
         <text x="${cx.toFixed(1)}" y="178" text-anchor="middle" class="repo-label">${esc(row.label)}</text>
         ${scopeLabel}
       </g>`;
@@ -162,7 +161,7 @@ export function buildSvg(data) {
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
     .track { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 2 4; }
-    .track-tick { stroke: #000000; stroke-width: 0.8; stroke-linecap: round; shape-rendering: crispEdges; pointer-events: none; }
+    .track-tick { stroke: #8c959f; stroke-width: 0.8; stroke-linecap: round; shape-rendering: crispEdges; pointer-events: none; }
     .track-tick.midpoint { stroke-width: 0.9; }
     .track-tick.major { stroke-width: 1; }
     .grid { stroke: #d8dee4; stroke-width: 1; stroke-dasharray: 4 5; }
