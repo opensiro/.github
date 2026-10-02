@@ -22,45 +22,45 @@
   },
   "window": {
     "days": 10,
-    "start": "2026-09-21",
-    "end": "2026-09-30"
+    "start": "2026-09-22",
+    "end": "2026-10-01"
   },
-  "as_of": "2026-09-30",
+  "as_of": "2026-10-01",
   "repos": {
     "vsm-harness-profile": {
-      "commits": 21,
-      "prs": 12,
-      "issues": 2
+      "commits": 17,
+      "prs": 9,
+      "issues": 1
     },
     "vsm-harness-skills": {
-      "commits": 36,
-      "prs": 20,
-      "issues": 6
+      "commits": 30,
+      "prs": 15,
+      "issues": 4
     },
     "vsm-harness-index": {
-      "commits": 932,
-      "prs": 541,
-      "issues": 259
+      "commits": 918,
+      "prs": 526,
+      "issues": 228
     },
     "awesome-vsm-harness": {
-      "commits": 22,
-      "prs": 12,
+      "commits": 20,
+      "prs": 11,
       "issues": 1
     },
     "vsm-oss-organization": {
-      "commits": 101,
-      "prs": 46,
-      "issues": 25
+      "commits": 90,
+      "prs": 43,
+      "issues": 17
     },
     "vsm-harness-capability": {
-      "commits": 212,
-      "prs": 122,
+      "commits": 214,
+      "prs": 123,
       "issues": 35
     },
     "vsm-harness-research": {
-      "commits": 398,
-      "prs": 136,
-      "issues": 151
+      "commits": 674,
+      "prs": 180,
+      "issues": 186
     }
   }
 }
