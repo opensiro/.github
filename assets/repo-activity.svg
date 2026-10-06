@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-labelledby="title desc">
   <title id="title">OpenSiro VSM Harness repository activity</title>
-  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization, the adjacent experimental VSM Harness Capability repository, and the private VSM Harness Research repository for 2026-09-25 - 2026-10-04. The vertical axis is logarithmic: powers of ten are equally spaced, with per-repository track ticks at 2x and 5x subdivisions plus the geometric midpoint of each decade for visual estimation. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
+  <desc id="desc">GitHub activity for the five repositories in the bounded OpenSiro VSM OSS organization, the adjacent experimental VSM Harness Capability repository, and the private VSM Harness Research repository for 2026-09-26 - 2026-10-05. The vertical axis is logarithmic: powers of ten are equally spaced, with per-repository track ticks at 2x and 5x subdivisions plus the geometric midpoint of each decade for visual estimation. Opaque overlapping bars show commit, pull request, and issue activity. Equal values are separated horizontally rather than merged.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #18181b; }
     .frame { fill: #ffffff; stroke: #d0d7de; }
@@ -23,7 +23,7 @@
   </style>
   <rect x="0.5" y="0.5" width="899" height="199" rx="14" class="frame" />
   <text x="30" y="34" font-size="12" font-weight="700" letter-spacing="1.4">OPENSIRO / VSM HARNESS ACTIVITY</text>
-  <text x="870" y="34" text-anchor="end" font-size="9" class="muted" letter-spacing="0.7">SEP 25-OCT 4 · 10 COMPLETED DAYS</text>
+  <text x="870" y="34" text-anchor="end" font-size="9" class="muted" letter-spacing="0.7">SEP 26-OCT 5 · 10 COMPLETED DAYS</text>
 
   <g aria-hidden="true">
     <circle cx="30" cy="52" r="4" fill="#2f81f7"/><text x="40" y="55" class="legend-label muted">commits</text>
@@ -56,10 +56,10 @@
         <text x="244.6" y="178" text-anchor="middle" class="repo-label">skills</text>
         
       </g>
-      <g class="repo" aria-label="vsm-harness-index: 816 commits · 475 PRs · 147 issues">
+      <g class="repo" aria-label="vsm-harness-index: 810 commits · 454 PRs · 124 issues">
         <line x1="358.3" y1="62" x2="358.3" y2="158" class="track" />
         <line x1="355.8" y1="150.8" x2="360.8" y2="150.8" class="track-tick minor factor-2" /><line x1="355.3" y1="141.2" x2="361.3" y2="141.2" class="track-tick minor factor-5" /><line x1="355.8" y1="126.8" x2="360.8" y2="126.8" class="track-tick minor factor-2" /><line x1="355.3" y1="117.2" x2="361.3" y2="117.2" class="track-tick minor factor-5" /><line x1="355.8" y1="102.8" x2="360.8" y2="102.8" class="track-tick minor factor-2" /><line x1="355.3" y1="93.2" x2="361.3" y2="93.2" class="track-tick minor factor-5" /><line x1="355.8" y1="78.8" x2="360.8" y2="78.8" class="track-tick minor factor-2" /><line x1="355.3" y1="69.2" x2="361.3" y2="69.2" class="track-tick minor factor-5" /><line x1="354.8" y1="146.0" x2="361.8" y2="146.0" class="track-tick midpoint" /><line x1="354.8" y1="122.0" x2="361.8" y2="122.0" class="track-tick midpoint" /><line x1="354.8" y1="98.0" x2="361.8" y2="98.0" class="track-tick midpoint" /><line x1="354.8" y1="74.0" x2="361.8" y2="74.0" class="track-tick midpoint" /><line x1="353.8" y1="158.0" x2="362.8" y2="158.0" class="track-tick major" /><line x1="353.8" y1="134.0" x2="362.8" y2="134.0" class="track-tick major" /><line x1="353.8" y1="110.0" x2="362.8" y2="110.0" class="track-tick major" /><line x1="353.8" y1="86.0" x2="362.8" y2="86.0" class="track-tick major" /><line x1="353.8" y1="62.0" x2="362.8" y2="62.0" class="track-tick major" />
-        <rect class="bar commits" x="344.3" y="88.1" width="28" height="69.9" rx="1" /><rect class="bar prs" x="348.3" y="93.8" width="20" height="64.2" rx="1" /><rect class="bar issues" x="352.3" y="106.0" width="12" height="52.0" rx="1" />
+        <rect class="bar commits" x="344.3" y="88.2" width="28" height="69.8" rx="1" /><rect class="bar prs" x="348.3" y="94.2" width="20" height="63.8" rx="1" /><rect class="bar issues" x="352.3" y="107.8" width="12" height="50.2" rx="1" />
         <text x="358.3" y="178" text-anchor="middle" class="repo-label">index</text>
         
       </g>
@@ -70,10 +70,10 @@
         <text x="472.0" y="178" text-anchor="middle" class="repo-label">awesome</text>
         
       </g>
-      <g class="repo" aria-label="vsm-oss-organization: 39 commits · 23 PRs · 5 issues">
+      <g class="repo" aria-label="vsm-oss-organization: 43 commits · 27 PRs · 5 issues">
         <line x1="585.7" y1="62" x2="585.7" y2="158" class="track" />
         <line x1="583.2" y1="150.8" x2="588.2" y2="150.8" class="track-tick minor factor-2" /><line x1="582.7" y1="141.2" x2="588.7" y2="141.2" class="track-tick minor factor-5" /><line x1="583.2" y1="126.8" x2="588.2" y2="126.8" class="track-tick minor factor-2" /><line x1="582.7" y1="117.2" x2="588.7" y2="117.2" class="track-tick minor factor-5" /><line x1="583.2" y1="102.8" x2="588.2" y2="102.8" class="track-tick minor factor-2" /><line x1="582.7" y1="93.2" x2="588.7" y2="93.2" class="track-tick minor factor-5" /><line x1="583.2" y1="78.8" x2="588.2" y2="78.8" class="track-tick minor factor-2" /><line x1="582.7" y1="69.2" x2="588.7" y2="69.2" class="track-tick minor factor-5" /><line x1="582.2" y1="146.0" x2="589.2" y2="146.0" class="track-tick midpoint" /><line x1="582.2" y1="122.0" x2="589.2" y2="122.0" class="track-tick midpoint" /><line x1="582.2" y1="98.0" x2="589.2" y2="98.0" class="track-tick midpoint" /><line x1="582.2" y1="74.0" x2="589.2" y2="74.0" class="track-tick midpoint" /><line x1="581.2" y1="158.0" x2="590.2" y2="158.0" class="track-tick major" /><line x1="581.2" y1="134.0" x2="590.2" y2="134.0" class="track-tick major" /><line x1="581.2" y1="110.0" x2="590.2" y2="110.0" class="track-tick major" /><line x1="581.2" y1="86.0" x2="590.2" y2="86.0" class="track-tick major" /><line x1="581.2" y1="62.0" x2="590.2" y2="62.0" class="track-tick major" />
-        <rect class="bar commits" x="571.7" y="119.8" width="28" height="38.2" rx="1" /><rect class="bar prs" x="575.7" y="125.3" width="20" height="32.7" rx="1" /><rect class="bar issues" x="579.7" y="141.2" width="12" height="16.8" rx="1" />
+        <rect class="bar commits" x="571.7" y="118.8" width="28" height="39.2" rx="1" /><rect class="bar prs" x="575.7" y="123.6" width="20" height="34.4" rx="1" /><rect class="bar issues" x="579.7" y="141.2" width="12" height="16.8" rx="1" />
         <text x="585.7" y="178" text-anchor="middle" class="repo-label">organization</text>
         
       </g>
@@ -84,10 +84,10 @@
         <text x="699.4" y="178" text-anchor="middle" class="repo-label">capability</text>
         <text x="699.4" y="190" text-anchor="middle" class="scope-label">adjacent</text>
       </g>
-      <g class="repo" aria-label="vsm-harness-research: 1033 commits · 231 PRs · 187 issues; private repository">
+      <g class="repo" aria-label="vsm-harness-research: 1276 commits · 264 PRs · 190 issues; private repository">
         <line x1="813.1" y1="62" x2="813.1" y2="158" class="track" />
         <line x1="810.6" y1="150.8" x2="815.6" y2="150.8" class="track-tick minor factor-2" /><line x1="810.1" y1="141.2" x2="816.1" y2="141.2" class="track-tick minor factor-5" /><line x1="810.6" y1="126.8" x2="815.6" y2="126.8" class="track-tick minor factor-2" /><line x1="810.1" y1="117.2" x2="816.1" y2="117.2" class="track-tick minor factor-5" /><line x1="810.6" y1="102.8" x2="815.6" y2="102.8" class="track-tick minor factor-2" /><line x1="810.1" y1="93.2" x2="816.1" y2="93.2" class="track-tick minor factor-5" /><line x1="810.6" y1="78.8" x2="815.6" y2="78.8" class="track-tick minor factor-2" /><line x1="810.1" y1="69.2" x2="816.1" y2="69.2" class="track-tick minor factor-5" /><line x1="809.6" y1="146.0" x2="816.6" y2="146.0" class="track-tick midpoint" /><line x1="809.6" y1="122.0" x2="816.6" y2="122.0" class="track-tick midpoint" /><line x1="809.6" y1="98.0" x2="816.6" y2="98.0" class="track-tick midpoint" /><line x1="809.6" y1="74.0" x2="816.6" y2="74.0" class="track-tick midpoint" /><line x1="808.6" y1="158.0" x2="817.6" y2="158.0" class="track-tick major" /><line x1="808.6" y1="134.0" x2="817.6" y2="134.0" class="track-tick major" /><line x1="808.6" y1="110.0" x2="817.6" y2="110.0" class="track-tick major" /><line x1="808.6" y1="86.0" x2="817.6" y2="86.0" class="track-tick major" /><line x1="808.6" y1="62.0" x2="817.6" y2="62.0" class="track-tick major" />
-        <rect class="bar commits" x="799.1" y="85.7" width="28" height="72.3" rx="1" /><rect class="bar prs" x="803.1" y="101.3" width="20" height="56.7" rx="1" /><rect class="bar issues" x="807.1" y="103.5" width="12" height="54.5" rx="1" />
+        <rect class="bar commits" x="799.1" y="83.5" width="28" height="74.5" rx="1" /><rect class="bar prs" x="803.1" y="99.9" width="20" height="58.1" rx="1" /><rect class="bar issues" x="807.1" y="103.3" width="12" height="54.7" rx="1" />
         <text x="813.1" y="178" text-anchor="middle" class="repo-label">research</text>
         <text x="813.1" y="190" text-anchor="middle" class="scope-label">private</text>
       </g>

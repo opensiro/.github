@@ -22,10 +22,10 @@
   },
   "window": {
     "days": 10,
-    "start": "2026-09-25",
-    "end": "2026-10-04"
+    "start": "2026-09-26",
+    "end": "2026-10-05"
   },
-  "as_of": "2026-10-04",
+  "as_of": "2026-10-05",
   "repos": {
     "vsm-harness-profile": {
       "commits": 9,
@@ -38,9 +38,9 @@
       "issues": 0
     },
     "vsm-harness-index": {
-      "commits": 816,
-      "prs": 475,
-      "issues": 147
+      "commits": 810,
+      "prs": 454,
+      "issues": 124
     },
     "awesome-vsm-harness": {
       "commits": 13,
@@ -48,8 +48,8 @@
       "issues": 0
     },
     "vsm-oss-organization": {
-      "commits": 39,
-      "prs": 23,
+      "commits": 43,
+      "prs": 27,
       "issues": 5
     },
     "vsm-harness-capability": {
@@ -58,9 +58,9 @@
       "issues": 35
     },
     "vsm-harness-research": {
-      "commits": 1033,
-      "prs": 231,
-      "issues": 187
+      "commits": 1276,
+      "prs": 264,
+      "issues": 190
     }
   }
 }
