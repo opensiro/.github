@@ -21,6 +21,20 @@
   <a href="https://github.com/opensiro/vsm-oss-organization"><img alt="Contribute" src="https://img.shields.io/badge/Start-Contributing-059669?style=for-the-badge"></a>
 </p>
 
+## I'm human
+
+- **I don't understand any of this:** [Show me the visual map](https://opensiro.com/vsm.html) — a direct, illustrated introduction to the VSM approach.
+- **I want to explore agent harnesses:** [Browse the VSM Harness Index](https://opensiro.com/vsm-index.html) or inspect the [canonical GitHub assessments](https://github.com/opensiro/vsm-harness-index).
+- **I want to contribute with AI:** [Start with the contributor guide](https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTE_WITH_AI.md) and bring your own agent.
+
+## I'm AI
+
+**Canonical VSM OSS agent entry:** [`START_HERE.md`](https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md).
+
+For a VSM Harness OSS task, read that public bootstrap, resolve the owning repository and then inspect the exact issue, PR or pinned artifact. The agent's tools and actual repository permissions still govern execution; this profile grants no additional authority. Other OpenSiro research tracks retain their own local instructions.
+
+---
+
 <p align="center">
   <a href="https://github.com/opensiro/vsm-harness-index/blob/main/METRICS.md"><img alt="Included assessments" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fopensiro%2Fvsm-harness-index%2Fmain%2Fdata%2Fmetrics.json&query=%24.corpus.included_assessments&label=assessed%20harnesses&style=flat-square"></a>
   <a href="https://github.com/opensiro/vsm-harness-index/blob/main/METRICS.md"><img alt="Catalog entries" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fopensiro%2Fvsm-harness-index%2Fmain%2Fdata%2Fmetrics.json&query=%24.corpus.catalog_entries&label=catalogued%20systems&style=flat-square"></a>
@@ -73,7 +87,7 @@ VSM Harness Index
              general per-function capability evidence
 ```
 
-Capability is an experimental adjacent research repository. It does not redefine VSM semantics or canonical Index assessments, and its existence does not by itself make it an operational S1 domain of the bounded `vsm-oss-organization` system. Cross-repository boundaries are documented in [vsm-oss-organization/ECOSYSTEM.md](https://github.com/opensiro/vsm-oss-organization/blob/main/ECOSYSTEM.md).
+Capability is an experimental adjacent research repository. It does not redefine VSM semantics or canonical Index assessments, and its existence does not by itself make it an operational S1 domain of the bounded `vsm-oss-organization` system. Cross-repository boundaries are documented in [vsm-oss-organization/ECOSYSTEM.md](https://github.com/opensiro/vsm-oss-organization/blob/main/docs/ECOSYSTEM.md).
 
 A core rule across this work is:
 
@@ -92,6 +106,7 @@ The **VSM OSS scope** column follows the current bounded scope declared by [`vsm
 | **[vsm-harness-index](https://github.com/opensiro/vsm-harness-index)** | Evidence-backed corpus of repository-relative harness assessments and deterministic derived views. | **in scope** |
 | **[vsm-harness-capability](https://github.com/opensiro/vsm-harness-capability)** | **Experimental:** evidence-backed general functional-capability research, compared one VSM function at a time and kept separate from domain-specific assessment. | adjacent / out of scope |
 | **[awesome-vsm-harness](https://github.com/opensiro/awesome-vsm-harness)** | Curated representative organizational forms selected from the broader corpus. | **in scope** |
+| **[upstream](https://github.com/opensiro/upstream)** | Evidence-backed contributions to external OSS projects, working-fork coordination and external PR lifecycle; third-party projects retain their own merge authority. | **in scope** |
 | **[vsm-oss-organization](https://github.com/opensiro/vsm-oss-organization)** | Experimental organizational/control construction for the bounded OpenSiro VSM Harness OSS group. | **in scope** |
 | **[terminal-bench-vsm](https://github.com/opensiro/terminal-bench-vsm)** | Executable research on failure-aware coding harnesses and their evaluation/growth environment. | out of scope |
 | **[arctic-0](https://github.com/opensiro/arctic-0)** | Public ARCTIC-0 archive, schemas, taxonomy, authoring tools, and analysis. | out of scope |
@@ -107,7 +122,8 @@ Then choose the artifact closest to your goal:
 - **Understand the canonical semantics:** [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile)
 - **Run the assessment procedure:** [VSM Harness Skills](https://github.com/opensiro/vsm-harness-skills)
 - **Explore experimental general functional capability:** [VSM Harness Capability](https://github.com/opensiro/vsm-harness-capability)
-- **Understand cross-repository boundaries:** [VSM OSS Ecosystem Architecture](https://github.com/opensiro/vsm-oss-organization/blob/main/ECOSYSTEM.md)
+- **Understand cross-repository boundaries:** [VSM OSS Ecosystem Architecture](https://github.com/opensiro/vsm-oss-organization/blob/main/docs/ECOSYSTEM.md)
+- **Improve external OSS harnesses:** [Upstream Contributions](https://github.com/opensiro/upstream)
 - **Contribute to the bounded OSS organization:** [VSM OSS Organization](https://github.com/opensiro/vsm-oss-organization)
 - **Explore capability-transfer research:** [ARCTIC-0](https://github.com/opensiro/arctic-0)
 
@@ -119,6 +135,8 @@ The website and this organization profile are presentation layers. Claims stay w
 - **Skills** → canonical assessment procedure
 - **Index** → canonical repository-relative assessments, rankings, corpus metrics, and provenance
 - **Capability** → experimental general functional-capability evidence and derived comparisons
+- **Awesome** → curated representative views of assessed harnesses
+- **Upstream** → external OSS interventions, working-fork evidence and PR lifecycle records
 - **VSM OSS Organization** → cross-repository organization/boundary documentation for its declared scope
 - **ARCTIC-0** → released ARCTIC artifacts
 
@@ -127,9 +145,3 @@ This separation keeps definitions, evidence, derived views, experiments, and pre
 ## Community
 
 Use **[OpenSiro Discussions](https://github.com/orgs/opensiro/discussions)** for cross-repository questions, ideas, and early-stage proposals. Once work is scoped to a specific repository, track implementation in that repository's Issues and pull requests.
-
----
-
-## I'm AI
-
-Start with [`opensiro/vsm-oss-organization`](https://github.com/opensiro/vsm-oss-organization). Treat its root `README.md` as the public entry point and follow the **I'm AI** route before substantial work; that handoff leads into the current canonical bootstrap, repository ownership map, and exact task contract.
