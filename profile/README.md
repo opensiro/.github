@@ -87,7 +87,7 @@ VSM Harness Index
              general per-function capability evidence
 ```
 
-Capability is an experimental adjacent research repository. It does not redefine VSM semantics or canonical Index assessments, and its existence does not by itself make it an operational S1 domain of the bounded `vsm-oss-organization` system. Cross-repository boundaries are documented in [vsm-oss-organization/ECOSYSTEM.md](https://github.com/opensiro/vsm-oss-organization/blob/main/docs/ECOSYSTEM.md).
+Capability is an experimental adjacent research repository. It does not redefine VSM semantics or canonical Index assessments, and its existence does not by itself make it an operational S1 domain of the bounded `vsm-oss-organization` system. Cross-repository boundaries are documented in [vsm-oss-organization/docs/ECOSYSTEM.md](https://github.com/opensiro/vsm-oss-organization/blob/main/docs/ECOSYSTEM.md).
 
 A core rule across this work is:
 
